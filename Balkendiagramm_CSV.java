@@ -15,7 +15,8 @@ public class Balkendiagramm_CSV extends PApplet
     // Liste mit allen Werten 
     // Deklariere ein Array zahlen für die Punkte und ein Array namen für die Spielernamen
     //------------
-    // TODO
+    int[] zahlen;  
+    String[] namen;
     //------------
 
     // Schriften
@@ -53,12 +54,22 @@ public class Balkendiagramm_CSV extends PApplet
     public void ladeTabelle(String name) {
         // Tabelle aus CSV-Datei laden
         Table csv = loadTable(name,"header,csv");
-
+        
+        zahlen = new int[csv.getRowCount()];
+        namen = new String[csv.getRowCount()];
+        
+         for (int i = 0; i < zahlen.length; i++) {
+                // Lies Wert aus der i. Zeile und der Spalte "Punkte" bzw. "Name"
+                zahlen[i] = csv.getInt(i, "Punkte");
+                namen[i] = csv.getString(i, "Name");
+            }
+        
         // Initialisiere Arrays, in die alle Zeilen der Tabelle passen
         // Die Anzahl der gespeicherten Zeilen bekommt man mit csv.getRowCount()
         //------------
         // TODO
         //------------
+        
 
         // Fülle die Arrays mit Werten aus der Tabelle
         // Mit csv.getInt(zeilennummer, "Name der Spalte") oder csv.getInt(zeilennummer, spaltennummer)
@@ -71,7 +82,7 @@ public class Balkendiagramm_CSV extends PApplet
     }
 
     public void zeichneBalken() {
-
+        
         clear();
 
         // Überschrift
@@ -80,14 +91,24 @@ public class Balkendiagramm_CSV extends PApplet
         text("Punkte", 2, 20);
         textFont(kleineSchrift);  
 
-        // Alle Einträge darstellen
+   // Alle Einträge darstellen
         // lasse alle Ergebnisse der Spieler in der Form
         // SpielerXY  234 XXXXXXXXXXXXXXXX
         // SpielerZY  12  XX
         // usw.
         // darstellen. Wandle dazu dein Programm, um die Werte eines Arrays darzustelle ab.
         //------------
-        // TODO
+        for(int i=0; i < zahlen.length; i++) {
+            // Balkendiagramm zeichnen
+            fill(255,255,255);
+            rect(120, 15*i+25, zahlen[i], 13); //2*zahlen[i]
+
+            // Beschriftung
+            fill(255,255,255);
+            textFont(kleineSchrift);  
+            text("i="+i, 2, 38+i*15);
+            text("zahlen["+i+"]="+zahlen[i], 30, 38+i*15);
+        }
         //------------
 
     }

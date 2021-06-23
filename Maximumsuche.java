@@ -152,6 +152,17 @@ public class Maximumsuche extends PApplet
      */
     public int maximumsuche() {
         // ------------------------------------------------------------------------------
+        if (zahlen.length == 0){
+            return -1;
+        }
+        
+        int max = 0; //aktuelles maximum
+        for(int i=1; i< zahlen.length; i++){
+            if( zahlen [i] > zahlen[max] ){
+                max = i;
+            }
+        }
+
         // ToDO: Implementiere die Maximumsuche, füge nach jeder Veränderung der
         //       Position des aktuellen Elements oder der Position des momentanen Maximums
         //       die Befehle: redraw(); und delay(verzoegerung); ein.
@@ -159,7 +170,7 @@ public class Maximumsuche extends PApplet
         //       Kommentiere die Maximumsuche
         // ------------------------------------------------------------------------------
         //<>//
-        return -1;
+        return max;
     }
 
     /**

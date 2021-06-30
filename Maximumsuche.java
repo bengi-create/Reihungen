@@ -135,6 +135,7 @@ public class Maximumsuche extends PApplet
                 // ToDo: Falls i dem aktuell untersuchtem oder der aktuellen Maximal-
                 //       position entspricht, muss eine andere Farbe gewählt werden
                 if ( i== max) fill(250,0,0);
+                if (i== akt) fill(300,50,0);
                 
                 
                 // ----------------------------------------------------------------------
@@ -161,11 +162,14 @@ public class Maximumsuche extends PApplet
             return -1;
         }
         
-        int max = 0; //aktuelles maximum
+        max = 0; //aktuelles maximum
         for(akt=1; akt< zahlen.length; akt++){
-            if( zahlen [akt] > zahlen[max] ){
+            System.out.println("Hallo");
+             redraw();delay(verzoegerung);
+            if( zahlen[akt] > zahlen[max] ){
                 max = akt;
             }
+            
         }
 
         // ToDO: Implementiere die Maximumsuche, füge nach jeder Veränderung der
